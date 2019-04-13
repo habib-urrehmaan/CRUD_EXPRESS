@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1 Add New Student
+  
+  //- Form for Editing Students Data
+  form(action="save" method="POST" id="addStudent")  
+    input(id="student_name" class="form-control mb-2" type="text" placeholder='Name' name="student_name" )
+    span(id="err_student_name" style="display:block;color:red")
+    input(id="program" class="form-control mb-2" type="text" placeholder='Program' name="program" ) 
+    span(id="err_program" style="display:block;color:red")
+    input(id="semester" class="form-control mb-2" placeholder='Semester' name="semester" ) 
+    span(id="err_semester" style="display:block;color:red")
+    select(id="courses" class="form-control mb-2" name="courses" multiple )
+        option(value="") --Select Courses--
+        option(value="OOP") OOP
+        option(value="DBS") DBS
+        option(value="DSA") DSA
+        option(value="DAA") DAA
+        option(value="AI") AI
+        option(value="CV") CV
+    span(id="err_courses" style="display:block;color:red")
+    div(class="text-center")
+      button(id="submit" class="btn btn-primary") Submit
+
+  //- Script for this page and form handling
+  script(type='text/javascript' src='/javascripts/custom.js').
+  script.
+
+    $(()=>{
+      $("#addStudent").submit(function(event){
+        event.preventDefault(); //prevent default action 
+        submitHandler(this);  
+      });
+    })
+
+    

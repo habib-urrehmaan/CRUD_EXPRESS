@@ -1,0 +1,21 @@
+body {
+  /* padding: 50px; */
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:ghostwhite;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  text-align: center;
+  color:maroon
+}
+
+.profile-pic 
+{
+  position:absolute;
+  background-color:grey;
+  display:inline;
+}

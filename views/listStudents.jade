@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+    //- This Page includes list of all Students
+    h1 List of Students
+    table(class="table table-striped")
+        tr
+            th Name
+            th Program
+            th Semester
+            th Courses
+            th Created At
+            th Updated At
+            th
+            th
+        each student in students
+            tr
+                td=student['student_name']
+                td=student.program 
+                td=student.semester
+                td
+                    ul(style="text-decoration:none")
+                    each course in student.courses
+                        li=course
+                td=student.createdAt
+                td=student.updatedAt
+
+                td
+                    button(type="button" class="btn btn-danger" onclick="location.href='/student/delete/"+student['_id']+"';") delt
+                td
+                    button(type="button" class="btn btn-warning" onclick="location.href='/student/edit/"+student['_id']+"';") edit
+    div(class="text-center")
+        button(type="button" class="btn btn-primary" onclick="location.href='/student/add';") add
+    

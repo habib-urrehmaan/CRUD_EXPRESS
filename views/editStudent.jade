@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    h1 Edit #{student.student_name}'s detail
+  
+    //- Form for Editing Students Data
+    form(action="/student/edit" method="POST" id="editStudent") 
+        input(type="hidden" name="id" value=student._id) 
+        input(id="student_name" class="form-control mb-2" type="text" placeholder='Name' name="student_name" value=student.student_name required) 
+        span(id="err_student_name" style="display:block;color:red")
+        input(id="program" class="form-control mb-2" type="text" placeholder='Program' name="program" value=student.program required) 
+        span(id="err_program" style="display:block;color:red")
+        input(id="semester" class="form-control mb-2" placeholder='Semester' name="semester" value=student.semester required) 
+        span(id="err_semester" style="display:block;color:red")
+        select(id="courses" class="form-control mb-2" name="courses" multiple required)
+            option(value="") --Select Courses--
+            option(value="OOP") OOP
+            option(value="DBS") DBS
+            option(value="DSA") DSA
+            option(value="DAA") DAA
+            option(value="AI") AI
+            option(value="CV") CV
+        div(class="text-center")
+            button(id="submit" class="btn btn-primary") Save
+    
+
+    //- Script for Form handling and Client side form functionality
+    script(type='text/javascript' src='/javascripts/custom.js').
+    script.
+        var courses='#{student.courses}';
+        $.each(courses.split(","), function(i,e){
+        $("#courses option[value='" + e + "']").prop("selected", true);
+        });
+
+        $(()=>{
+        $("#editStudent").submit(function(event){
+            event.preventDefault(); //prevent default action 
+            submitHandler(this);  
+        });
+        })
+
+       
